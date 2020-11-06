@@ -6,31 +6,30 @@ class ModalWrapper extends React.Component {
   constructor(props) {
     super(props);
     this.state = { open: true };
-    this.component = React.cloneElement(this.props.component, { resolve: this.resolve, close: this.close });
+    this.component = React.cloneElement(this.props.component, { resolve: this.resolve.bind(this), close: this.close.bind(this) });
   }
 
-  resolve = (payload) => {
-    this.setState({ open: false }, () => {
+  resolve(payload) {
+    this.setState({open: false}, () => {
       this.props.resolve(payload);
-      this.props.div?.parentNode?.removeChild(this.props.div);
+      this.props.div && this.props.div.parentNode ? this.props.div.parentNode.removeChild(this.props.div) : null;
     });
-  };
+  }
 
-  close = () => {
+  close() {
     return this.resolve(null);
-  };
+  }
 
-  render = () => {
-    return React.createElement(Modal, {
-      ...this.props.modalProps,
-      onClose: this.close,
+  render() {
+    return React.createElement(Modal, Object.assign({
+      onClose: this.close.bind(this),
       open: this.state.open,
       children: this.component,
-    });
-  };
+    } , this.props.modalProps));
+  }
 }
 
-export const asyncModal = (component, props = {}, modalProps = {}) => {
+const asyncModal = (component, props = {}, modalProps = {}) => {
   return new Promise((resolve) => {
     const div = document.createElement('div');
     document.body.appendChild(div);
@@ -43,3 +42,5 @@ export const asyncModal = (component, props = {}, modalProps = {}) => {
     ReactDOM.render(wrapper, div);
   });
 };
+
+export default asyncModal;
