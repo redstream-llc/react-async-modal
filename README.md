@@ -9,7 +9,7 @@ Install
 API
 ---
 ```js
-const promise = createModal(Component, componentProps, modalProps);
+const promise = asyncModal(Component, componentProps, modalProps);
 ```
 
 Basic usage
@@ -27,14 +27,19 @@ class MyConfirm extends React.Component {
   }
 }
 // async/await style
-const result = await createModal(MyConfirm, { question: 'Delete file?' });
+const result = await asyncModal(MyConfirm, { question: 'Delete file?' });
 console.log(result);
 
 // Promise style
-createModal(MyConfirm, { question: 'Delete file?' }).then((payload) => {
+asyncModal(MyConfirm, { question: 'Delete file?' }).then((payload) => {
   if(payload) {
       console.log('File was deleted!');
   }
+});
+
+// Setup default modal settings
+asyncModal.setDefaultModalProps({
+    showCloseIcon: false
 });
 ```
 Two methods will be injected in `props` of `MyConfirm`

@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-responsive-modal';
 
+let defaultModalProps = {};
+
 class ModalWrapper extends React.Component {
   constructor(props) {
     super(props);
@@ -21,7 +23,7 @@ class ModalWrapper extends React.Component {
   }
 
   render() {
-    return React.createElement(Modal, Object.assign({
+    return React.createElement(Modal, Object.assign({}, {
       onClose: this.close.bind(this),
       open: this.state.open,
       children: this.component,
@@ -37,10 +39,14 @@ const asyncModal = (component, props = {}, modalProps = {}) => {
       div,
       resolve,
       component: React.createElement(component, props),
-      modalProps,
+      modalProps: Object.assign({}, defaultModalProps, modalProps),
     });
     ReactDOM.render(wrapper, div);
   });
 };
+
+asyncModal.setDefaultModalProps = (modalProps) => {
+  defaultModalProps = modalProps;
+}
 
 export default asyncModal;
