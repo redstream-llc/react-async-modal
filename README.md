@@ -1,22 +1,27 @@
-# React async Modal
-A simple tool for creating modal with Promise-style usage based on `react-responsive-modal`
+# React Async Modal
+A simple tool for creating modals with Promise style usage based on `react-responsive-modal`
 
 Install
 -----------
 * yarn: `yarn add react-async-modal`
 * npm: `npm i react-async-modal --save`
 
-API
----
-```js
-const promise = asyncModal(Component, componentProps, modalProps);
-```
-
-Basic usage
------------
+Usage example
+-------------
 ```jsx
 import asyncModal from 'react-async-modal';
-// ...
+
+// Setup default modal settings (optional)
+asyncModal.setDefaultModalProps({
+  showCloseIcon: false,
+  style: {
+    modal: {
+      width: 500
+    }
+  }
+});
+
+// Defining modal component
 class MyConfirm extends React.Component {
   render() {
     return <div>
@@ -26,28 +31,24 @@ class MyConfirm extends React.Component {
     </div>  
   }
 }
-// async/await style
+
+// Calling modal with async/await style
 const result = await asyncModal(MyConfirm, { question: 'Delete file?' });
 console.log(result);
 
-// Promise style
+// Or with Promise style
 asyncModal(MyConfirm, { question: 'Delete file?' }).then((payload) => {
   if(payload) {
       console.log('File was deleted!');
   }
 });
-
-// Setup default modal settings
-asyncModal.setDefaultModalProps({
-    showCloseIcon: false
-});
 ```
-Two methods will be injected in `props` of `MyConfirm`
+There are two methods will be injected to `props` of `MyConfirm` component:
 * `resolve` method to send payload and close modal
 * `close` method to send `null` as payload and close modal 
 
 Modal customization
 -------------------
-Use `modalProps` argument to pass props to `react-responsive-modal`
+Use `modalProps` argument or `asyncModal.setDefaultModalProps()` method to pass props to `react-responsive-modal`
 
 Available props: https://react-responsive-modal.leopradel.com/#props
