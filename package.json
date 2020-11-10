@@ -1,7 +1,7 @@
 {
   "name": "react-async-modal",
   "version": "0.1.3",
-  "description": "React async Modal",
+  "description": "React Async Modal",
   "main": "index.js",
   "repository": "https://github.com/redstream-llc/react-async-modal",
   "author": "Yauheni Kiryienkau <ya@redstream.by>",
