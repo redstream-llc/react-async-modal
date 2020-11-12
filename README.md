@@ -9,7 +9,9 @@ Install
 Usage example
 -------------
 ```jsx
+// Importing
 import asyncModal from 'react-async-modal';
+import 'react-responsive-modal/styles.css';
 
 // Setup default modal settings (optional)
 asyncModal.setDefaultModalProps({
