@@ -14,7 +14,9 @@ class ModalWrapper extends React.Component {
   resolve(payload) {
     this.setState({open: false}, () => {
       this.props.resolve(payload);
-      this.props.div && this.props.div.parentNode ? this.props.div.parentNode.removeChild(this.props.div) : null;
+      if(this.props.div && this.props.div.parentNode) {
+        this.props.div.parentNode.removeChild(this.props.div)
+      }
     });
   }
 

@@ -1,13 +1,13 @@
 {
   "name": "react-async-modal",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "React Async Modal",
   "main": "index.js",
   "repository": "https://github.com/redstream-llc/react-async-modal",
   "author": "Yauheni Kiryienkau <ya@redstream.by>",
   "license": "MIT",
   "keywords": ["react", "modal", "react-responsive-modal", "promise"],
-  "dependencies": {
+  "peerDependencies": {
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-responsive-modal": "^5.2.1"
