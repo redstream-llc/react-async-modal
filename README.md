@@ -8,7 +8,7 @@ Install
 
 Usage example
 -------------
-```jsx
+```tsx
 // Importing
 import asyncModal from 'react-async-modal';
 import 'react-responsive-modal/styles.css';
@@ -24,7 +24,7 @@ asyncModal.setDefaultModalProps({
 });
 
 // Defining modal component
-class MyConfirm extends React.Component {
+class MyConfirm extends React.Component<{question: string, resolve(boolean): void, close(): void}> {
   render() {
     return <div>
       <h1>{this.props.question}</h1>
@@ -35,11 +35,11 @@ class MyConfirm extends React.Component {
 }
 
 // Calling modal with async/await style
-const result = await asyncModal(MyConfirm, { question: 'Delete file?' });
+const result = await asyncModal(MyConfirm, { question: 'Delete file?' }, { showCloseIcon: false });
 console.log(result);
 
 // Or with Promise style
-asyncModal(MyConfirm, { question: 'Delete file?' }).then((payload) => {
+asyncModal(MyConfirm, { question: 'Delete file?' }, { showCloseIcon: false }).then((payload) => {
   if(payload) {
       console.log('File was deleted!');
   }

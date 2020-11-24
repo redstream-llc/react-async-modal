@@ -1,20 +1,66 @@
 {
   "name": "react-async-modal",
-  "version": "0.1.5",
   "description": "React Async Modal",
-  "main": "index.js",
-  "repository": "https://github.com/redstream-llc/react-async-modal",
+  "version": "0.2.0",
   "author": "Yauheni Kiryienkau <ya@redstream.by>",
+  "repository": "https://github.com/redstream-llc/react-async-modal",
   "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "keywords": ["react", "modal", "react-responsive-modal", "promise"],
-  "peerDependencies": {
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-responsive-modal": "^5.2.1"
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
   },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "peerDependencies": {
+    "react": ">=16",
+    "react-dom": ">=16",
+    "react-responsive-modal": ">=5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 120,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "module": "dist/react-async-modal-ts.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/react-async-modal-ts.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/react-async-modal-ts.esm.js",
+      "limit": "10 KB"
+    }
+  ],
   "devDependencies": {
+    "@size-limit/preset-small-lib": "^4.9.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "husky": "^4.3.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-responsive-modal": "^5.2.1"
+    "react-responsive-modal": "^6.0.0",
+    "size-limit": "^4.9.0",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.0.3",
+    "typescript": "^4.1.2"
   }
 }
