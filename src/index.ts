@@ -1,6 +1,6 @@
-import React, { ComponentClass, ComponentElement, ComponentProps, FunctionComponent } from 'react';
+import React, {ComponentClass, ComponentElement, ComponentProps, FunctionComponent} from 'react';
 import ReactDOM from 'react-dom';
-import Modal, { ModalProps } from 'react-responsive-modal';
+import Modal, {ModalProps} from 'react-responsive-modal';
 
 let defaultModalProps = {};
 
@@ -26,7 +26,7 @@ class ModalWrapper extends React.Component<{
   }
 
   resolve(payload: any) {
-    this.setState({ open: false }, () => {
+    this.setState({open: false}, () => {
       this.props.resolve(payload);
       if (this.props.div && this.props.div.parentNode) {
         this.props.div.parentNode.removeChild(this.props.div);
@@ -62,9 +62,10 @@ const asyncModal = (
       div,
       resolve,
       component: React.createElement(component, props),
-      modalProps: { ...defaultModalProps, ...(modalProps || {}) },
+      modalProps: {...defaultModalProps, ...(modalProps || {})},
     });
-    ReactDOM.render(wrapper, div);
+    const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+    root.render(wrapper, div);
   });
 };
 
